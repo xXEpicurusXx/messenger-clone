@@ -46,7 +46,7 @@ const UserBox: React.FC<UserBoxProps> = ({ data }) => {
     >
       <Avatar user={data} />
       <div className="min-w-0 flex-1">
-        <div className="focus.outline-none">
+        <div className="focus:outline-none">
           <div
             className="
                     flex
@@ -59,7 +59,7 @@ const UserBox: React.FC<UserBoxProps> = ({ data }) => {
               className="
                         text-sm
                         font-medium
-                        text.gray-900
+                        text-gray-900
                     "
             >
               {data.name}

@@ -29,8 +29,7 @@ const DesktopItem: React.FC<DesktopItemProps> = ({
     <li onClick={handleClick}>
       <Link
         href={href}
-        className={clsx(
-          `
+        className={clsx(`
         group
         flex
         gap-x-3
@@ -38,7 +37,7 @@ const DesktopItem: React.FC<DesktopItemProps> = ({
         p-3
         text-sm
         leading-6
-        font-semiboild
+        font-semibold
         text-gray-500
         hover:text-black
         hover:bg-gray-100
