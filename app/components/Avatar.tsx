@@ -1,19 +1,18 @@
-'use client'
+"use client";
 
 interface AvatarProps {
-    user?: User;
+  user?: User;
 }
 
-import { User } from '@prisma/client';
-import Image from 'next/image';
-import React from 'react'
+import { User } from "@prisma/client";
+import Image from "next/image";
+import React from "react";
 
-const Avatar: React.FC<AvatarProps> = ({
-    user
-}) => {
+const Avatar: React.FC<AvatarProps> = ({ user }) => {
   return (
-    <div className='relative'>
-      <div className='
+    <div className="relative">
+      <div
+        className="
       relative 
       inline-block 
       rounded-full 
@@ -22,15 +21,16 @@ const Avatar: React.FC<AvatarProps> = ({
       w-9 
       md:h-11
       md:w-11
-
-      '>
+      "
+      >
         <Image
-            alt="Avatar"
-            src={user?.image || '/images/placeholder.jpeg'}
-            fill
+          alt="Avatar"
+          src={user?.image || "/images/placeholder.jpeg"}
+          fill
         />
       </div>
-      <span className='
+      <span
+        className="
       absolute 
       block 
       rounded-full
@@ -43,10 +43,10 @@ const Avatar: React.FC<AvatarProps> = ({
       w-2
       md:h-3
       md:w-3
-      '/>
+      "
+      />
     </div>
-  )
-}
+  );
+};
 
-export default Avatar
-
+export default Avatar;

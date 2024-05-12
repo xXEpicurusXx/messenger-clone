@@ -6,7 +6,7 @@ import React from "react";
 import MobileItem from "./MobileItem";
 
 const MobileFooter = () => {
-  const route = useRoutes();
+  const routes = useRoutes();
   const { isOpen } = useConversation();
 
   if (isOpen) {
@@ -28,7 +28,7 @@ const MobileFooter = () => {
         lg:hidden
     "
     >
-      {route.map((route) => (
+      {routes.map((route) => (
         <MobileItem
           key={route.href}
           href={route.href}
