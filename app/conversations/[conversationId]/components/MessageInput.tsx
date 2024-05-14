@@ -28,6 +28,7 @@ const MessageInput: React.FC<MessageInputProps> = ({
         placeholder={placeholder}
         className="
           text-black
+          text-xs
           font-light
           py-2
           px-4

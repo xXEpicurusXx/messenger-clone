@@ -35,7 +35,11 @@ const Header: React.FC<HeaderProps> = ({ conversation }) => {
 
   return (
     <>
-      <ChatDrawer data={conversation} isOpen={drawerOpen} onClose={() => setDrawerOpen(false)} />
+      <ChatDrawer
+        data={conversation}
+        isOpen={drawerOpen}
+        onClose={() => setDrawerOpen(false)}
+      />
       <div
         className="
         bg-white 

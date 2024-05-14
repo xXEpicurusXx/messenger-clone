@@ -9,7 +9,7 @@ import Image from "next/image";
 
 import Avatar from "../../../components/Avatar";
 import { FullMessageType } from "../../../types";
-// import ImageModal from "./ImageModal";
+import ImageModal from "./ImageModal";
 
 interface MessageBoxProps {
   data: FullMessageType;
@@ -26,37 +26,33 @@ const MessageBox: React.FC<MessageBoxProps> = ({ data, isLast }) => {
     .map((user) => user.name)
     .join(", ");
 
-  const container = clsx("flex gap-3 p-4", isOwn && "justify-end");
-  const avatar = clsx(isOwn && "order-2");
-  const body = clsx("flex flex-col gap-2", isOwn && "items-end");
+  const container = clsx("flex gap-3 p-4", !isOwn && "justify-end");
+  const avatar = clsx(!isOwn && "order-2");
+  const body = clsx("flex flex-col", !isOwn && "items-end");
   const message = clsx(
     "text-sm w-fit overflow-hidden",
-    isOwn ? "bg-sky-500 text-white" : "bg-gray-100  dark:bg-lightgray",
-    data.image ? "rounded-md p-0" : "rounded-full py-2 px-3"
+    isOwn ? "bg-sky-500 text-white" : "bg-gray-100",
+    data.image ? "rounded-md p-0" : "rounded-md py-2 px-3"
   );
 
   return (
     <div className={container}>
-      {!isOwn && (
-        <div className={avatar}>
-          <Avatar user={data.sender} />
-        </div>
-      )}
+      <div className={avatar}>
+        <Avatar user={data.sender} />
+      </div>
+
       <div className={body}>
         <div className="flex items-center gap-1">
-          {!isOwn && (
+          {/* {!isOwn && (
             <div className="text-sm text-gray-500">{data.sender.name}</div>
-          )}
-          <div className="text-xs text-gray-400">
-            {format(new Date(data.createdAt), "p")}
-          </div>
+          )} */}
         </div>
         <div className={message}>
-          {/* <ImageModal
+          <ImageModal
             src={data.image}
             isOpen={imageModalOpen}
             onClose={() => setImageModalOpen(false)}
-          /> */}
+          />
           {data.image ? (
             <Image
               alt="Image"
@@ -74,6 +70,9 @@ const MessageBox: React.FC<MessageBoxProps> = ({ data, isLast }) => {
           ) : (
             <div>{data.body}</div>
           )}
+        </div>
+        <div className="text-xs text-gray-400">
+          {format(new Date(data.createdAt), "p")}
         </div>
         {isLast && isOwn && seenList.length > 0 && (
           <div

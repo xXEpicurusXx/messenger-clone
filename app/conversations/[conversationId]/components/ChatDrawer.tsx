@@ -13,7 +13,7 @@ import useActiveList from "../../../hooks/useActiveList";
 import useOtherUser from "../../../hooks/useOtherUser";
 import ConfirmModal from "./ConfirmModal";
 
-interface ProfileDrawerProps {
+interface ChatDrawerProps {
   isOpen: boolean;
   onClose: () => void;
   data: Conversation & {
@@ -21,11 +21,7 @@ interface ProfileDrawerProps {
   };
 }
 
-const ChatDrawer: React.FC<ProfileDrawerProps> = ({
-  isOpen,
-  onClose,
-  data,
-}) => {
+const ChatDrawer: React.FC<ChatDrawerProps> = ({ isOpen, onClose, data }) => {
   const [confirmOpen, setConfirmOpen] = useState(false);
   const otherUser = useOtherUser(data);
 

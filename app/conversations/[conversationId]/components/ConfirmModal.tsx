@@ -55,7 +55,10 @@ const ConfirmModal: React.FC<ConfirmModalProps> = ({ isOpen, onClose }) => {
             sm:w-10
           "
         >
-          <FiAlertTriangle className="h-6 w-6 text-red-600" aria-hidden="true" />
+          <FiAlertTriangle
+            className="h-6 w-6 text-red-600"
+            aria-hidden="true"
+          />
         </div>
         <div
           className="
@@ -74,12 +77,16 @@ const ConfirmModal: React.FC<ConfirmModalProps> = ({ isOpen, onClose }) => {
           </Dialog.Title>
           <div className="mt-2">
             <p className="text-sm text-gray-500 dark:text-gray-400">
-              Are you sure you want to delete this conversation? This action cannot be undone.
+              Are you sure you want to delete this conversation? This action
+              cannot be undone.
             </p>
           </div>
         </div>
       </div>
-      <div className="mt-5 sm:mt-4 sm:flex sm:flex-row-reverse">
+      <div
+        className="mt-5 sm:mt-4 sm:flex sm:flex-row-reverse gap-x-6
+"
+      >
         <Button disabled={isLoading} danger onClick={onDelete}>
           Delete
         </Button>

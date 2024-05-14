@@ -28,6 +28,8 @@ const Button: React.FC<ButtonProps> = ({
         `
         flex 
         justify-center 
+        items-center
+        w-full
         rounded-md 
         px-3 
         py-2 
@@ -36,12 +38,18 @@ const Button: React.FC<ButtonProps> = ({
         focus-visible:outline 
         focus-visible:outline-2 
         focus-visible:outline-offset-2 
+        mt-3
         `,
         disabled && "opacity-50 cursor-default",
         fullWidth && "w-full",
-        secondary ? "text-gray-900 dark:text-white" : "text-white",
-        danger && "bg-rose-500 hover:bg-rose-600 focus-visible:outline-rose-600",
-        !secondary && !danger && "bg-sky-500 hover:bg-sky-600 focus-visible:outline-sky-600"
+        secondary
+          ? "text-gray-900 hover:bg-gray-200 dark:text-white"
+          : "text-white ",
+        danger &&
+          "bg-rose-500 hover:bg-rose-600 focus-visible:outline-rose-600",
+        !secondary &&
+          !danger &&
+          "bg-sky-500 hover:bg-sky-600 focus-visible:outline-sky-600"
       )}
     >
       {children}
