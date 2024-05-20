@@ -5,10 +5,10 @@ import { useState } from "react";
 import { User } from "@prisma/client";
 
 import useRoutes from "../../hooks/useRoutes";
-// import ThemeToggle from "../theme/ThemeToggle";
 import DesktopItem from "./DesktopItem";
 import SettingsModal from "./SettingsModal";
 import ProfileItem from "./ProfileItem";
+
 
 interface DesktopSidebarProps {
   currentUser: User;
@@ -60,7 +60,7 @@ const DesktopSidebar: React.FC<DesktopSidebarProps> = ({ currentUser }) => {
           </ul>
         </nav>
         <nav className="mt-4 flex flex-col justify-between items-center">
-           {/* <ThemeToggle /> */}
+
           <ProfileItem currentUser={currentUser} />
         </nav>
       </div>

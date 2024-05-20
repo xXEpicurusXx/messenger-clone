@@ -5,13 +5,13 @@ import { useEffect, useMemo, useState } from "react";
 import { MdOutlineGroupAdd } from "react-icons/md";
 
 import { User } from "@prisma/client";
-// import { find } from "lodash";
+import { find } from "lodash";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 
 import GroupChatModal from "../../components/modals/GroupChatModal";
 import useConversation from "../../hooks/useConversation";
-// import { pusherClient, pusherEvents } from "../../libs/pusher";
+import { pusherClient, pusherEvents } from "../../libs/pusher";
 import { FullConversationType } from "../../types";
 import ConversationBox from "./ConversationBox";
 
@@ -20,10 +20,7 @@ interface ConversationListProps {
   users: User[];
 }
 
-const ConversationList: React.FC<ConversationListProps> = ({
-  initialItems,
-  users,
-}) => {
+const ConversationList: React.FC<ConversationListProps> = ({ initialItems, users }) => {
   const [items, setItems] = useState(initialItems);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -41,7 +38,7 @@ const ConversationList: React.FC<ConversationListProps> = ({
       return;
     }
 
-    // pusherClient.subscribe(pusherKey);
+    pusherClient.subscribe(pusherKey);
 
     const updateHandler = (conversation: FullConversationType) => {
       setItems((current) =>
@@ -61,9 +58,9 @@ const ConversationList: React.FC<ConversationListProps> = ({
     const newHandler = (conversation: FullConversationType) => {
       setItems((current) => {
         // skip if the conversation already exists
-        // if (find(current, { id: conversation.id })) {
-        //   return current;
-        // }
+        if (find(current, { id: conversation.id })) {
+          return current;
+        }
 
         return [conversation, ...current];
       });
@@ -74,23 +71,26 @@ const ConversationList: React.FC<ConversationListProps> = ({
         return [...current.filter((convo) => convo.id !== conversation.id)];
       });
 
-      if (conversationId == conversation.id) {
+      if (conversationId === conversation.id) {
         router.push("/conversations");
       }
     };
 
-    // pusherClient.bind(pusherEvents.UPDATE_CONVERSATION, updateHandler);
-    // pusherClient.bind(pusherEvents.NEW_CONVERSATION, newHandler);
-    // pusherClient.bind(pusherEvents.DELETE_CONVERSATION, removeHandler);
+    pusherClient.bind(pusherEvents.UPDATE_CONVERSATION, updateHandler);
+    pusherClient.bind(pusherEvents.NEW_CONVERSATION, newHandler);
+    pusherClient.bind(pusherEvents.DELETE_CONVERSATION, removeHandler);
+
+    return () => {
+      pusherClient.unbind(pusherEvents.UPDATE_CONVERSATION, updateHandler);
+      pusherClient.unbind(pusherEvents.NEW_CONVERSATION, newHandler);
+      pusherClient.unbind(pusherEvents.DELETE_CONVERSATION, removeHandler);
+      pusherClient.unsubscribe(pusherKey);
+    };
   }, [conversationId, pusherKey, router]);
 
   return (
     <>
-      <GroupChatModal
-        users={users}
-        isOpen={isModalOpen}
-        onClose={() => setIsModalOpen(false)}
-      />
+      <GroupChatModal users={users} isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
       <aside
         className={clsx(
           `
@@ -111,9 +111,7 @@ const ConversationList: React.FC<ConversationListProps> = ({
       >
         <div className="px-5">
           <div className="flex justify-between mb-4 pt-4">
-            <div className="text-2xl font-bold text-neutral-800 dark:text-gray-200">
-              Messages
-            </div>
+            <div className="text-2xl font-bold text-neutral-800 dark:text-gray-200">Messages</div>
             <div
               onClick={() => setIsModalOpen(true)}
               className="
@@ -132,11 +130,7 @@ const ConversationList: React.FC<ConversationListProps> = ({
             </div>
           </div>
           {items.map((item) => (
-            <ConversationBox
-              key={item.id}
-              data={item}
-              selected={conversationId === item.id}
-            />
+            <ConversationBox key={item.id} data={item} selected={conversationId === item.id} />
           ))}
         </div>
       </aside>

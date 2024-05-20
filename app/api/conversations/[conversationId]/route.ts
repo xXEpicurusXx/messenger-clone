@@ -3,7 +3,7 @@ import prisma from "@/app/libs/prismadb";
 import { NextResponse } from "next/server";
 
 
-// import { pusherEvents, pusherServer } from "../../../libs/pusher";
+import { pusherEvents, pusherServer } from "../../../libs/pusher";
 
 interface IParams {
   conversationId?: string;
@@ -40,11 +40,11 @@ export async function DELETE(request: Request, { params }: { params: IParams }) 
       },
     });
 
-    // existingConversation.users.forEach((user) => {
-    //   if (user.email) {
-    //     pusherServer.trigger(user.email, pusherEvents.DELETE_CONVERSATION, existingConversation);
-    //   }
-    // });
+    existingConversation.users.forEach((user) => {
+      if (user.email) {
+        pusherServer.trigger(user.email, pusherEvents.DELETE_CONVERSATION, existingConversation);
+      }
+    });
 
     return NextResponse.json(deletedConversation);
   } catch (error) {

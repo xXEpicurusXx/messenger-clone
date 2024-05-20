@@ -4,7 +4,7 @@ import { useState } from "react";
 
 import { User } from "@prisma/client";
 
-// import SearchInput from "./SearchInput";
+import SearchInput from "./SearchInput";
 import UserBox from "./UserBox";
 
 interface UserListProps {
@@ -55,11 +55,11 @@ const UserList: React.FC<UserListProps> = ({ items }) => {
             People
           </div>
         </div>
-        {/* <SearchInput
+        <SearchInput
           id="search"
           placeholder="search by name, email ..."
           setSearchBy={setSearchBy}
-        /> */}
+        />
         {items.filter(filterBySearch).map((item) => (
           <UserBox key={item.id} data={item} />
         ))}

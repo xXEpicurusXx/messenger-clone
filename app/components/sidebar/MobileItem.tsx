@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import clsx from "clsx";
 import Link from "next/link";
 
@@ -17,14 +17,16 @@ const MobileItem: React.FC<MobileItemProps> = ({
   active,
   onClick,
 }) => {
+  const [isActive, setIsActive] = useState(active);
   const handleClick = () => {
     if (onClick) {
       return onClick();
     }
+    setIsActive(!active);
   };
   return (
     <Link
-      onClick={onClick}
+      onClick={handleClick}
       href={href}
       className={clsx(
         `
@@ -37,19 +39,21 @@ const MobileItem: React.FC<MobileItemProps> = ({
     w-full
     justify-center
     p-4
-    text-gray-500
+    text-gray-600
     hover:text-black
     hover:bg-gray-100
+    
 
   `,
-        active && "bg-gray-100 text-black"
+        isActive &&
+          "bg-gray-200 text-black dark:bg-lightgray dark:text-gray-200"
       )}
     >
       <Icon
-        className="
+        className={`
         h-6
         w-6
-      "
+      `}
       />
     </Link>
   );

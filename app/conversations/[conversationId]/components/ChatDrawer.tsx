@@ -12,6 +12,7 @@ import AvatarGroup from "../../../components/AvatarGroup";
 import useActiveList from "../../../hooks/useActiveList";
 import useOtherUser from "../../../hooks/useOtherUser";
 import ConfirmModal from "./ConfirmModal";
+import React from "react";
 
 interface ChatDrawerProps {
   isOpen: boolean;
@@ -121,18 +122,6 @@ const ChatDrawer: React.FC<ChatDrawerProps> = ({ isOpen, onClose, data }) => {
                             <dl className="space-y-8 px-4 sm:space-y-6 sm:px-6">
                               {data.isGroup && (
                                 <div>
-                                  <dt
-                                    className="
-                                      text-sm 
-                                      font-medium 
-                                      text-gray-500 
-                                      sm:w-40 
-                                      sm:flex-shrink-0
-                                      dark:text-gray-200
-                                    "
-                                  >
-                                    Emails
-                                  </dt>
                                   <dd
                                     className="
                                       mt-1 
@@ -142,9 +131,39 @@ const ChatDrawer: React.FC<ChatDrawerProps> = ({ isOpen, onClose, data }) => {
                                       dark:text-gray-50
                                     "
                                   >
-                                    {data.users
-                                      .map((user) => user.email)
-                                      .join(", ")}
+                                    <div className="grid grid-cols-2 gap-1">
+                                      <div
+                                        className="text-sm 
+                                      font-medium 
+                                      text-gray-500 
+                                      sm:w-40 
+                                      sm:flex-shrink-0
+                                      dark:text-gray-200"
+                                      >
+                                        Members
+                                      </div>
+                                      <div
+                                        className="text-sm 
+                                      font-medium 
+                                      text-gray-500 
+                                      sm:w-40 
+                                      sm:flex-shrink-0
+                                      dark:text-gray-200"
+                                      >
+                                        Member since
+                                      </div>
+                                      {data.users.map((user) => (
+                                        <React.Fragment key={user.id}>
+                                          <div>{user.name}</div>
+                                          <div>
+                                            {format(
+                                              new Date(user.createdAt),
+                                              "PP"
+                                            )}
+                                          </div>
+                                        </React.Fragment>
+                                      ))}
+                                    </div>
                                   </dd>
                                 </div>
                               )}
@@ -160,7 +179,7 @@ const ChatDrawer: React.FC<ChatDrawerProps> = ({ isOpen, onClose, data }) => {
                                       dark:text-gray-200
                                     "
                                   >
-                                    Email
+                                    Member
                                   </dt>
                                   <dd
                                     className="
@@ -171,7 +190,7 @@ const ChatDrawer: React.FC<ChatDrawerProps> = ({ isOpen, onClose, data }) => {
                                       dark:text-gray-50
                                     "
                                   >
-                                    {otherUser.email}
+                                    {otherUser.name}
                                   </dd>
                                 </div>
                               )}
@@ -189,7 +208,7 @@ const ChatDrawer: React.FC<ChatDrawerProps> = ({ isOpen, onClose, data }) => {
                                         dark:text-gray-200
                                       "
                                     >
-                                      Joined
+                                      Member since
                                     </dt>
                                     <dd
                                       className="
