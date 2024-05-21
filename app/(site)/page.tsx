@@ -20,5 +20,3 @@ export default function Home() {
     </div>
   );
 }
-      //           [#ff004f] 
-      //            [#313338]
