@@ -41,7 +41,7 @@ const Form = () => {
       className="
     py-4
     px-4
-    bg-white
+    bg-[#313338]
     border-t
     flex
     items-center
@@ -55,7 +55,7 @@ const Form = () => {
         onUpload={handleUpload}
         uploadPreset="mswdflah"
       >
-        <HiPhoto size={30} className="text-sky-500" />
+        <HiPhoto size={30} className="text-[#ff004f] hover:opacity-75" />
       </CldUploadButton>
       <form
         onSubmit={handleSubmit(onSubmit)}
@@ -73,9 +73,9 @@ const Form = () => {
           className="
         rounded-full
         p-2
-        bg-sky-500
+        bg-[#ff004f]
         cursor-pointer
-        hover:bg-sky-600
+        hover:opacity-75
         transition
         "
         >

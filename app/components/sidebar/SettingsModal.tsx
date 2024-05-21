@@ -72,13 +72,12 @@ const SettingsModal: React.FC<SettingsModalProps> = ({
                 text-base 
                 font-semibold 
                 leading-7 
-                text-gray-900
-                dark:text-gray-200
+                text-gray-200
               "
             >
               Profile
             </h2>
-            <p className="mt-1 text-sm leading-6 text-gray-600 dark:text-gray-300">
+            <p className="mt-1 text-sm leading-6 text-gray-400">
               Edit your profile information.
             </p>
 
@@ -99,42 +98,43 @@ const SettingsModal: React.FC<SettingsModalProps> = ({
                     text-sm 
                     font-medium 
                     leading-6 
-                    text-gray-900
-                    dark:text-gray-200
+                    text-gray-200
                   "
                 >
                   Photo
                 </label>
                 <div className="mt-2 flex items-center gap-x-3">
-                  <Image
-                    width="48"
-                    height="48"
-                    className="rounded-full"
-                    src={
-                      image || currentUser?.image || "/images/placeholder.jpeg"
-                    }
-                    alt="Avatar"
-                  />
-                  <CldUploadButton
-                    options={{ maxFiles: 1 }}
-                    onUpload={handleUpload}
-                    uploadPreset="mswdflah"
-                  >
-                    <Button disabled={isLoading} secondary type="button">
-                      <Image
-                        width="20"
-                        height="20"
-                        src={"/images/edit.png"}
-                        alt="edit"
-                      />
-                    </Button>
-                  </CldUploadButton>
+                  <div className="relative w-12 h-12">
+                    <Image
+                      width="48"
+                      height="48"
+                      className="rounded-full"
+                      src={
+                        image || currentUser?.image || "/images/placeholder.jpeg"
+                      }
+                      alt="Avatar"
+                    />
+                    <span className="absolute bottom-0 right-0 translate-x-1/4 translate-y-1/4 w-6 h-6 rounded-full bg-gray-300 flex items-center justify-center border-2">
+                      <CldUploadButton
+                        options={{ maxFiles: 1 }}
+                        onUpload={handleUpload}
+                        uploadPreset="mswdflah"
+                      >
+                        <Image
+                          width="16"
+                          height="16"
+                          src="/images/edit.png"
+                          alt="edit"
+                          className="cursor-pointer"
+                        />
+                      </CldUploadButton>
+                    </span>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-
         <div
           className="
             mt-6 

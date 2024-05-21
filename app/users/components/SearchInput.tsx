@@ -1,6 +1,12 @@
 "use client";
 
-import { ChangeEvent, Dispatch, SetStateAction, useEffect, useRef } from "react";
+import {
+  ChangeEvent,
+  Dispatch,
+  SetStateAction,
+  useEffect,
+  useRef,
+} from "react";
 
 import { debounce } from "lodash";
 
@@ -10,7 +16,11 @@ interface SearchInputProps {
   setSearchBy: Dispatch<SetStateAction<string>>;
 }
 
-const SearchInput: React.FC<SearchInputProps> = ({ placeholder, id, setSearchBy }) => {
+const SearchInput: React.FC<SearchInputProps> = ({
+  placeholder,
+  id,
+  setSearchBy,
+}) => {
   const debouncedSearch = useRef(
     debounce(async (criteria) => {
       setSearchBy(criteria);
@@ -34,17 +44,14 @@ const SearchInput: React.FC<SearchInputProps> = ({ placeholder, id, setSearchBy 
       placeholder={placeholder}
       onChange={handleSearch}
       className="
-          text-black
-          font-light
+        text-gray-800
           mb-2
           py-2
           px-4
-          bg-neutral-100 
-          dark:bg-lightgray
+          bg-gray-200 
           w-full 
           rounded-full
           focus:outline-none
-          dark:text-white
         "
     />
   );

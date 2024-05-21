@@ -64,7 +64,7 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose, children }) => {
                   transform 
                   overflow-hidden 
                   rounded-lg 
-                  bg-white 
+                  bg-[#313338]
                   px-4 
                   pb-4
                   pt-5 
@@ -76,7 +76,6 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose, children }) => {
                   sm:w-full 
                   sm:max-w-lg 
                   sm:p-6
-                  dark:bg-dusk
                 "
               >
                 <div
@@ -95,14 +94,12 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose, children }) => {
                     type="button"
                     className="
                       rounded-md 
-                      bg-white 
-                      text-gray-400 
-                      hover:text-gray-500 
+                      bg-[#313338]
+                      text-[#ff004f]
+                      hover:text-rose-600 
                       focus:outline-none 
                       focus:ring-2 
-                      focus:ring-indigo-500 
                       focus:ring-offset-2
-                      dark:bg-dusk
                     "
                     onClick={onClose}
                   >

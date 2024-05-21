@@ -20,7 +20,10 @@ interface ConversationListProps {
   users: User[];
 }
 
-const ConversationList: React.FC<ConversationListProps> = ({ initialItems, users }) => {
+const ConversationList: React.FC<ConversationListProps> = ({
+  initialItems,
+  users,
+}) => {
   const [items, setItems] = useState(initialItems);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -90,7 +93,11 @@ const ConversationList: React.FC<ConversationListProps> = ({ initialItems, users
 
   return (
     <>
-      <GroupChatModal users={users} isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
+      <GroupChatModal
+        users={users}
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+      />
       <aside
         className={clsx(
           `
@@ -111,26 +118,30 @@ const ConversationList: React.FC<ConversationListProps> = ({ initialItems, users
       >
         <div className="px-5">
           <div className="flex justify-between mb-4 pt-4">
-            <div className="text-2xl font-bold text-neutral-800 dark:text-gray-200">Messages</div>
+            <div className="text-2xl font-bold text-white dark:text-gray-200">
+              Messages
+            </div>
             <div
               onClick={() => setIsModalOpen(true)}
               className="
                 rounded-full 
                 p-2 
-                bg-gray-100 
-                text-gray-600 
+                bg-[#ff004f]
+                text-gray-200 
                 cursor-pointer 
                 hover:opacity-75 
                 transition
-                dark:bg-lightgray
-                dark:text-gray-200
               "
             >
               <MdOutlineGroupAdd size={20} />
             </div>
           </div>
           {items.map((item) => (
-            <ConversationBox key={item.id} data={item} selected={conversationId === item.id} />
+            <ConversationBox
+              key={item.id}
+              data={item}
+              selected={conversationId === item.id}
+            />
           ))}
         </div>
       </aside>

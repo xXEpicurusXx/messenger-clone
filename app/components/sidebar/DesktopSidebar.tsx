@@ -35,14 +35,12 @@ const DesktopSidebar: React.FC<DesktopSidebarProps> = ({ currentUser }) => {
         lg:w-20 
         xl:px-6
         lg:overflow-y-auto 
-        lg:bg-white 
+        lg:bg-[#313338]
         lg:border-r-[1px]
         lg:pb-4
         lg:flex
         lg:flex-col
         justify-between
-        dark:bg-dusk
-        dark:border-lightgray
       "
       >
         <nav className="mt-4 flex flex-col justify-between">

@@ -20,8 +20,7 @@ const Select: React.FC<SelectProps> = ({ label, value, onChange, options, disabl
           text-sm 
           font-medium 
           leading-6 
-          text-gray-900
-          dark:text-gray-200
+          text-gray-200
         "
       >
         {label}
@@ -39,20 +38,18 @@ const Select: React.FC<SelectProps> = ({ label, value, onChange, options, disabl
             option: (base, { isFocused, isSelected }) => ({
               ...base,
               backgroundColor: isFocused
-                ? "rgb(107 114 128)"
-                : isSelected
-                ? "rgb(156 163 175)"
-                : "#3a3b3c",
+                ? "#EEEEEE"
+                : !isSelected
+                ? "rgb(224, 224, 224)"
+                : "#E0E0E0",
             }),
           }}
           classNames={{
             control: (state) =>
               clsx(
                 `
-                text-sm 
-                dark:bg-lightgray 
-                dark:border-gray-500`,
-                state.isFocused && "border-gray-400"
+                text-sm `,
+                state.isFocused && "border-gray-200"
               ),
             menu: () => "dark:bg-lightgray",
           }}

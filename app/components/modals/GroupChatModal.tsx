@@ -68,13 +68,12 @@ const GroupChatModal: React.FC<GroupChatModalProps> = ({
                 text-base 
                 font-semibold 
                 leading-7 
-                text-gray-900
-                dark:text-gray-200
+                text-gray-200
               "
             >
               Create A Group Chat
             </h2>
-            <p className="mt-1 text-sm leading-6 text-gray-600 dark:text-gray-300">
+            <p className="mt-1 text-sm leading-6 text-gray-400">
               Add members to the group chat...
             </p>
             <div className="mt-10 flex flex-col gap-y-8">

@@ -13,7 +13,7 @@ export default async function ConversationsLayout({
 
   return (
     <Sidebar>
-      <div className="h-full">
+      <div className="h-full bg-[#313338]">
         <ConversationList initialItems={conversations} users={users} />
         {children}
       </div>
