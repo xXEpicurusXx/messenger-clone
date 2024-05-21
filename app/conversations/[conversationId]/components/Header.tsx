@@ -9,9 +9,9 @@ import { Conversation, User } from "@prisma/client";
 import Link from "next/link";
 
 import Avatar from "../../../components/Avatar";
-import ChatDrawer from "./ChatDrawer";
 import AvatarGroup from "../../../components/AvatarGroup";
 import useActiveList from "../../../hooks/useActiveList";
+import ChatDrawer from "./ChatDrawer";
 
 interface HeaderProps {
   conversation: Conversation & {
