@@ -1,32 +1,16 @@
-import type { Config } from "tailwindcss";
-
-const config: Config = {
+/** @type {import('tailwindcss').Config} */
+module.exports = {
   content: [
-    "./pages/**/*.{js,ts,jsx,tsx,mdx}",
-    "./components/**/*.{js,ts,jsx,tsx,mdx}",
-    "./app/**/*.{js,ts,jsx,tsx,mdx}",
+    "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
+    "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
+    "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
     extend: {
-      colors:{
-        colors: {
-          "primary-500": "#ff004f",
-          "secondary-500": "#FFB620",
-          blue: "#0095F6",
-          "logout-btn": "#FF5A5A",
-          "navbar-menu": "rgba(16, 16, 18, 0.6)",
-          "dark-1": "#000000",
-          "dark-2": "#121417",
-          "dark-3": "#101012",
-          "dark-4": "#1F1F22",
-          "light-1": "#FFFFFF",
-          "light-2": "#EFEFEF",
-          "light-3": "#7878A3",
-          "light-4": "#5C5C7B",
-          "gray-1": "#697C89",
-          glassmorphism: "rgba(16, 16, 18, 0.60)",
-        },
-      }
+      colors: {
+        dusk: "#242526",
+        lightgray: "#3a3b3c",
+      },
     },
   },
   plugins: [
@@ -34,5 +18,5 @@ const config: Config = {
       strategy: "class",
     }),
   ],
+  darkMode: "class",
 };
-export default config;
